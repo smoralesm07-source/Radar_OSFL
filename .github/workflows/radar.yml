@@ -38,7 +38,7 @@ jobs:
       - name: Extract Law 21440 registry
         run: python scripts/v03_law21440.py
       - name: Extract Registro 19862
-        run: python scripts/v03_reg19862.py
+        run: timeout 120s python scripts/v03_reg19862_fast.py || echo 'Registro 19.862 no disponible dentro de ventana operativa; conciliacion continua sin tratar ausencia como cero.'
       - name: Reconcile multi-registry v0.3
         run: python scripts/reconcile_v03.py
       - name: Validate
