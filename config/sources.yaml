@@ -1,0 +1,182 @@
+schema_version: '1.0'
+radar_id: RADAR_OSFL
+as_of_policy: source_native
+sources:
+  - id: sii_company_year
+    authority: Servicio de Impuestos Internos
+    tier: A
+    kind: bulk_zip
+    purpose: fiscal_universe_history
+    url: https://www.sii.cl/estadisticas/nominas/PUB_EMPRESAS_PJ_2020_A_2024.zip
+    official_page: https://www.sii.cl/sobre_el_sii/nominapersonasjuridicas.html
+    coverage: '2020-2024'
+    refresh: annual_or_when_published
+    automated: true
+    member_globs: ['PUB_EMPRESAS_PJ_20*.txt']
+
+  - id: sii_names_current
+    authority: Servicio de Impuestos Internos
+    tier: A
+    kind: bulk_zip
+    purpose: current_identity_tax_status
+    url: https://www.sii.cl/estadisticas/nominas/PUB_NOMBRES_PJ.zip
+    official_page: https://www.sii.cl/sobre_el_sii/nominapersonasjuridicas.html
+    coverage: current_snapshot
+    refresh: monthly_check
+    automated: true
+    member_globs: ['PUB_NOMBRES_PJ.txt']
+
+  - id: sii_activities_current
+    authority: Servicio de Impuestos Internos
+    tier: A
+    kind: bulk_zip
+    purpose: current_economic_activities
+    url: https://www.sii.cl/estadisticas/nominas/PUB_NOM_ACTECOS.zip
+    official_page: https://www.sii.cl/sobre_el_sii/nominapersonasjuridicas.html
+    coverage: current_snapshot
+    refresh: monthly_check
+    automated: true
+    member_globs: ['PUB_NOM_ACTECOS.txt']
+
+  - id: sii_addresses_history
+    authority: Servicio de Impuestos Internos
+    tier: A
+    kind: bulk_zip
+    purpose: address_history_and_territory
+    url: https://www.sii.cl/estadisticas/nominas/PUB_NOM_DIRECCIONES.zip
+    official_page: https://www.sii.cl/sobre_el_sii/nominapersonasjuridicas.html
+    coverage: historical_in_current_snapshot
+    refresh: monthly_check
+    automated: true
+    member_globs: ['PUB_NOM_DOMICILIO.txt', 'PUB_NOM_SUCURSAL.txt']
+
+  - id: sii_osfl_products
+    authority: Servicio de Impuestos Internos
+    tier: A
+    kind: html_table
+    purpose: direct_osfl_confirmation
+    url: https://www.sii.cl/servicios_online/1047-nomina_sin_fines_lucro-1714.html
+    coverage: current_registry
+    refresh: weekly
+    automated: true
+
+  - id: sii_osfl_food_legacy
+    authority: Servicio de Impuestos Internos
+    tier: A
+    kind: html_table
+    purpose: direct_osfl_confirmation_history
+    url: https://www.sii.cl/ccp/nomina_sin_fines_lucro.htm
+    coverage: current_and_legacy_status
+    refresh: monthly
+    automated: true
+
+  - id: registro_civil_rnpj_sfl
+    authority: Servicio de Registro Civil e Identificación
+    tier: A
+    kind: registry_gap
+    purpose: primary_legal_universe
+    official_page: https://www.registrocivil.cl/
+    coverage: national_registry
+    refresh: manual_until_public_bulk_endpoint_is_verified
+    automated: false
+    limitation: No se identificó en esta revisión un bulk público vigente 2020-2026 apto para extracción automatizada; no inferir ausencia de entidad por ausencia de este dataset.
+
+  - id: catastro_oip
+    authority: Ministerio Secretaría General de Gobierno
+    tier: A
+    kind: html_registry
+    purpose: public_interest_status_and_legal_form
+    url: https://catastro-oip.msgg.gob.cl/views/inicio.php
+    coverage: current_registry
+    refresh: weekly
+    automated: candidate_adapter
+
+  - id: registro_19862
+    authority: Ministerio de Hacienda
+    tier: A
+    kind: web_registry
+    purpose: public_fund_transfers
+    url: https://registros19862.gob.cl/
+    coverage: transfers_since_2003_focus_2020_present
+    refresh: weekly
+    automated: candidate_adapter
+
+  - id: donatarias_21440
+    authority: Subsecretaría de Hacienda
+    tier: A
+    kind: html_table
+    purpose: donation_eligibility_and_status
+    url: https://donacionesley21440.gob.cl/registro-publico
+    coverage: registry_current
+    refresh: weekly
+    automated: true
+
+  - id: donations_21440
+    authority: Subsecretaría de Hacienda
+    tier: A
+    kind: annual_publication
+    purpose: donation_flows
+    url: https://donacionesley21440.gob.cl/donaciones
+    coverage: '2022-present_as_published'
+    refresh: monthly_check
+    automated: candidate_adapter
+
+  - id: mdsf_donatarios_19885
+    authority: Ministerio de Desarrollo Social y Familia
+    tier: A
+    kind: html_table
+    purpose: social_donation_eligibility
+    url: https://sociedadcivil.ministeriodesarrollosocial.gob.cl/fundaciones-registradas/
+    coverage: current_registry
+    refresh: monthly
+    automated: true
+
+  - id: ind_rnod
+    authority: Instituto Nacional de Deportes
+    tier: A
+    kind: registry_reference
+    purpose: sports_organizations_governance
+    url: https://ind.cl/registro-nacional-de-organizaciones-deportivas-rnod/
+    coverage: current_registry
+    refresh: monthly
+    automated: candidate_adapter
+
+  - id: daes_associations
+    authority: División de Asociatividad y Cooperativas
+    tier: A
+    kind: statistics_and_registry
+    purpose: consumer_and_associative_universe_benchmark
+    url: https://asociatividad.economia.cl/estadisticas/
+    coverage: current_and_series
+    refresh: monthly
+    automated: candidate_adapter
+
+  - id: dt_unions
+    authority: Dirección del Trabajo
+    tier: B
+    kind: annual_statistics
+    purpose: coverage_benchmark_not_entity_master
+    url: https://www.dt.gob.cl/portal/1629/w3-propertyvalue-188834.html
+    coverage: '2020-2024_and_future_when_published'
+    refresh: annual
+    automated: metadata_only
+
+  - id: uaf_national_risk
+    authority: Unidad de Análisis Financiero
+    tier: A
+    kind: methodology
+    purpose: aml_cft_context
+    url: https://www.uaf.cl/es-cl/sistema-nacional-alacftcfp/evaluacion-nacional-de-riesgos
+    coverage: current
+    refresh: monthly_check
+    automated: metadata_only
+
+  - id: fatf_r8
+    authority: Financial Action Task Force
+    tier: A
+    kind: methodology
+    purpose: recommendation_8_scope
+    url: https://www.fatf-gafi.org/en/publications/Financialinclusionandnpoissues/Bpp-combating-abuse-npo.html
+    coverage: current_standard
+    refresh: quarterly_check
+    automated: metadata_only
