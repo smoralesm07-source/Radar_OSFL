@@ -31,14 +31,24 @@ jobs:
         run: python -m pip install -r requirements.txt
       - name: Build source model
         run: python scripts/run_radar.py
+      - name: Materialize OSFL universe
+        run: python scripts/build_universe.py
       - name: Validate
         run: python -m pytest -q
+      - name: Upload analytical entity-year product
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: radar-osfl-entity-year
+          path: data/export/osfl_entity_year.parquet
+          if-no-files-found: warn
+          retention-days: 30
       - name: Commit compact outputs
         run: |
           git config user.name "radar-bot"
           git config user.email "radar-bot@users.noreply.github.com"
           git add docs/data || true
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "radar: refresh OSFL source model"
+          git commit -m "radar: refresh OSFL universe"
           git pull --rebase origin main
           git push origin HEAD:main
