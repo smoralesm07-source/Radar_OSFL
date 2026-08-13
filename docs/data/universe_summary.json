@@ -1,0 +1,142 @@
+{
+  "radar_id": "RADAR_OSFL",
+  "version": "0.2.0",
+  "generated_at": "2026-08-13T20:12:50.328177+00:00",
+  "status": "UNIVERSE_MATERIALIZED",
+  "universe_entities": 45234,
+  "confirmed_direct_sii_registry": 263,
+  "fatf_r8_screening_candidates": 8639,
+  "entities_with_company_year_2020_2024": 15316,
+  "by_universe_status": {
+    "CANDIDATE_STRONG_SII_ACTIVITY": 39622,
+    "CANDIDATE_REVIEW_SII_ACTIVITY": 5349,
+    "CONFIRMED_DIRECT_SII_REGISTRY": 263
+  },
+  "by_activity": [
+    {
+      "activity_code": "941100",
+      "activity_name": "ACTIVIDADES DE ASOCIACIONES EMPRESARIALES Y DE EMPLEADORES",
+      "entities": 2092
+    },
+    {
+      "activity_code": "941200",
+      "activity_name": "ACTIVIDADES DE ASOCIACIONES PROFESIONALES",
+      "entities": 4462
+    },
+    {
+      "activity_code": "942000",
+      "activity_name": "ACTIVIDADES DE SINDICATOS",
+      "entities": 1833
+    },
+    {
+      "activity_code": "949100",
+      "activity_name": "ACTIVIDADES DE ORGANIZACIONES RELIGIOSAS",
+      "entities": 1371
+    },
+    {
+      "activity_code": "949901",
+      "activity_name": "ACTIVIDADES DE CENTROS DE MADRES",
+      "entities": 2296
+    },
+    {
+      "activity_code": "949902",
+      "activity_name": "ACTIVIDADES DE CLUBES SOCIALES",
+      "entities": 1468
+    },
+    {
+      "activity_code": "949903",
+      "activity_name": "FUNDACIONES Y CORPORACIONES; ASOCIACIONES QUE PROMUEVEN ACTIVIDADES CULTURALES O RECREATIVAS",
+      "entities": 7338
+    },
+    {
+      "activity_code": "949909",
+      "activity_name": "ACTIVIDADES DE OTRAS ASOCIACIONES N.C.P.",
+      "entities": 27431
+    }
+  ],
+  "company_presence_by_year": [
+    {
+      "commercial_year": 2020,
+      "entities": 9918
+    },
+    {
+      "commercial_year": 2021,
+      "entities": 10863
+    },
+    {
+      "commercial_year": 2022,
+      "entities": 11566
+    },
+    {
+      "commercial_year": 2023,
+      "entities": 11904
+    },
+    {
+      "commercial_year": 2024,
+      "entities": 12231
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "sii_activities_current",
+      "status": "CURRENT",
+      "rows": 48291,
+      "error": null,
+      "retrieved_at": "2026-08-13T20:11:07.988018+00:00",
+      "sha256": "27787338253953e16ab17d3f29e697963b96d622e5b06de3f5cd80744dddef36",
+      "source_url": "https://www.sii.cl/estadisticas/nominas/PUB_NOM_ACTECOS.zip",
+      "failure_is_zero": false
+    },
+    {
+      "source_id": "sii_osfl_products",
+      "status": "FAILED",
+      "rows": null,
+      "error": "ImportError: Missing optional dependency 'html5lib'.  Use pip or conda to install html5lib.",
+      "retrieved_at": "2026-08-13T20:11:15.143363+00:00",
+      "sha256": null,
+      "source_url": null,
+      "failure_is_zero": false
+    },
+    {
+      "source_id": "sii_osfl_food_legacy",
+      "status": "CURRENT",
+      "rows": 263,
+      "error": null,
+      "retrieved_at": "2026-08-13T20:11:16.040997+00:00",
+      "sha256": "59e32789feb627a25c7b351c3894b9eceadec65c1ee8b91b3b03e10b1bcf1633",
+      "source_url": "https://www.sii.cl/ccp/nomina_sin_fines_lucro.htm",
+      "failure_is_zero": false
+    },
+    {
+      "source_id": "sii_names_current",
+      "status": "CURRENT",
+      "rows": 45234,
+      "error": null,
+      "retrieved_at": "2026-08-13T20:11:31.237617+00:00",
+      "sha256": "ac7157c4ccd422aeed836e4de18c08f9f26171f3fcc7b17506178f4b1689da34",
+      "source_url": "https://www.sii.cl/estadisticas/nominas/PUB_NOMBRES_PJ.zip",
+      "failure_is_zero": false
+    },
+    {
+      "source_id": "sii_company_year",
+      "status": "CURRENT",
+      "rows": 56482,
+      "error": null,
+      "retrieved_at": "2026-08-13T20:12:10.381496+00:00",
+      "sha256": "2d68ba953db7dbf2aac7451acd6e3e80bea265eea962535c72a5e311c03c4092",
+      "source_url": "https://www.sii.cl/estadisticas/nominas/PUB_EMPRESAS_PJ_2020_A_2024.zip",
+      "failure_is_zero": false
+    }
+  ],
+  "quality": {
+    "invalid_rut_rows_discarded_from_activity": 0,
+    "entity_id_rule": "ENT-RUT-{RUT_VALIDADO}",
+    "source_failure_is_zero": false
+  },
+  "interpretation": {
+    "confirmed": "Entidad presente en una nómina SII que declara explícitamente instituciones sin fines de lucro.",
+    "candidate": "Entidad con actividad económica SII asociativa/OSFL; requiere corroboración jurídica cuando no existe confirmación directa.",
+    "company_year": "La presencia 2020-2024 indica que el RUT fue clasificado como empresa/persona jurídica por SII en ese año; no prueba por sí sola condición OSFL histórica.",
+    "fatf_r8": "FATF_R8_CANDIDATE es solo cribado funcional para revisión; no equivale a riesgo FT ni a inclusión definitiva en el subconjunto de Recomendación 8."
+  }
+}
