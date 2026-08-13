@@ -1,0 +1,172 @@
+[
+  {
+    "source_id": "sii_company_year",
+    "authority": "Servicio de Impuestos Internos",
+    "tier": "A",
+    "purpose": "fiscal_universe_history",
+    "coverage": "2020-2024",
+    "refresh": "annual_or_when_published",
+    "automated": true,
+    "url": "https://www.sii.cl/estadisticas/nominas/PUB_EMPRESAS_PJ_2020_A_2024.zip"
+  },
+  {
+    "source_id": "sii_names_current",
+    "authority": "Servicio de Impuestos Internos",
+    "tier": "A",
+    "purpose": "current_identity_tax_status",
+    "coverage": "current_snapshot",
+    "refresh": "monthly_check",
+    "automated": true,
+    "url": "https://www.sii.cl/estadisticas/nominas/PUB_NOMBRES_PJ.zip"
+  },
+  {
+    "source_id": "sii_activities_current",
+    "authority": "Servicio de Impuestos Internos",
+    "tier": "A",
+    "purpose": "current_economic_activities",
+    "coverage": "current_snapshot",
+    "refresh": "monthly_check",
+    "automated": true,
+    "url": "https://www.sii.cl/estadisticas/nominas/PUB_NOM_ACTECOS.zip"
+  },
+  {
+    "source_id": "sii_addresses_history",
+    "authority": "Servicio de Impuestos Internos",
+    "tier": "A",
+    "purpose": "address_history_and_territory",
+    "coverage": "historical_in_current_snapshot",
+    "refresh": "monthly_check",
+    "automated": true,
+    "url": "https://www.sii.cl/estadisticas/nominas/PUB_NOM_DIRECCIONES.zip"
+  },
+  {
+    "source_id": "sii_osfl_products",
+    "authority": "Servicio de Impuestos Internos",
+    "tier": "A",
+    "purpose": "direct_osfl_confirmation",
+    "coverage": "current_registry",
+    "refresh": "weekly",
+    "automated": true,
+    "url": "https://www.sii.cl/servicios_online/1047-nomina_sin_fines_lucro-1714.html"
+  },
+  {
+    "source_id": "sii_osfl_food_legacy",
+    "authority": "Servicio de Impuestos Internos",
+    "tier": "A",
+    "purpose": "direct_osfl_confirmation_history",
+    "coverage": "current_and_legacy_status",
+    "refresh": "monthly",
+    "automated": true,
+    "url": "https://www.sii.cl/ccp/nomina_sin_fines_lucro.htm"
+  },
+  {
+    "source_id": "registro_civil_rnpj_sfl",
+    "authority": "Servicio de Registro Civil e Identificación",
+    "tier": "A",
+    "purpose": "primary_legal_universe",
+    "coverage": "national_registry",
+    "refresh": "manual_until_public_bulk_endpoint_is_verified",
+    "automated": false,
+    "url": "https://www.registrocivil.cl/"
+  },
+  {
+    "source_id": "catastro_oip",
+    "authority": "Ministerio Secretaría General de Gobierno",
+    "tier": "A",
+    "purpose": "public_interest_status_and_legal_form",
+    "coverage": "current_registry",
+    "refresh": "weekly",
+    "automated": "candidate_adapter",
+    "url": "https://catastro-oip.msgg.gob.cl/views/inicio.php"
+  },
+  {
+    "source_id": "registro_19862",
+    "authority": "Ministerio de Hacienda",
+    "tier": "A",
+    "purpose": "public_fund_transfers",
+    "coverage": "transfers_since_2003_focus_2020_present",
+    "refresh": "weekly",
+    "automated": "candidate_adapter",
+    "url": "https://registros19862.gob.cl/"
+  },
+  {
+    "source_id": "donatarias_21440",
+    "authority": "Subsecretaría de Hacienda",
+    "tier": "A",
+    "purpose": "donation_eligibility_and_status",
+    "coverage": "registry_current",
+    "refresh": "weekly",
+    "automated": true,
+    "url": "https://donacionesley21440.gob.cl/registro-publico"
+  },
+  {
+    "source_id": "donations_21440",
+    "authority": "Subsecretaría de Hacienda",
+    "tier": "A",
+    "purpose": "donation_flows",
+    "coverage": "2022-present_as_published",
+    "refresh": "monthly_check",
+    "automated": "candidate_adapter",
+    "url": "https://donacionesley21440.gob.cl/donaciones"
+  },
+  {
+    "source_id": "mdsf_donatarios_19885",
+    "authority": "Ministerio de Desarrollo Social y Familia",
+    "tier": "A",
+    "purpose": "social_donation_eligibility",
+    "coverage": "current_registry",
+    "refresh": "monthly",
+    "automated": true,
+    "url": "https://sociedadcivil.ministeriodesarrollosocial.gob.cl/fundaciones-registradas/"
+  },
+  {
+    "source_id": "ind_rnod",
+    "authority": "Instituto Nacional de Deportes",
+    "tier": "A",
+    "purpose": "sports_organizations_governance",
+    "coverage": "current_registry",
+    "refresh": "monthly",
+    "automated": "candidate_adapter",
+    "url": "https://ind.cl/registro-nacional-de-organizaciones-deportivas-rnod/"
+  },
+  {
+    "source_id": "daes_associations",
+    "authority": "División de Asociatividad y Cooperativas",
+    "tier": "A",
+    "purpose": "consumer_and_associative_universe_benchmark",
+    "coverage": "current_and_series",
+    "refresh": "monthly",
+    "automated": "candidate_adapter",
+    "url": "https://asociatividad.economia.cl/estadisticas/"
+  },
+  {
+    "source_id": "dt_unions",
+    "authority": "Dirección del Trabajo",
+    "tier": "B",
+    "purpose": "coverage_benchmark_not_entity_master",
+    "coverage": "2020-2024_and_future_when_published",
+    "refresh": "annual",
+    "automated": "metadata_only",
+    "url": "https://www.dt.gob.cl/portal/1629/w3-propertyvalue-188834.html"
+  },
+  {
+    "source_id": "uaf_national_risk",
+    "authority": "Unidad de Análisis Financiero",
+    "tier": "A",
+    "purpose": "aml_cft_context",
+    "coverage": "current",
+    "refresh": "monthly_check",
+    "automated": "metadata_only",
+    "url": "https://www.uaf.cl/es-cl/sistema-nacional-alacftcfp/evaluacion-nacional-de-riesgos"
+  },
+  {
+    "source_id": "fatf_r8",
+    "authority": "Financial Action Task Force",
+    "tier": "A",
+    "purpose": "recommendation_8_scope",
+    "coverage": "current_standard",
+    "refresh": "quarterly_check",
+    "automated": "metadata_only",
+    "url": "https://www.fatf-gafi.org/en/publications/Financialinclusionandnpoissues/Bpp-combating-abuse-npo.html"
+  }
+]

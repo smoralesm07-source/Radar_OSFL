@@ -1,0 +1,10 @@
+{
+  "radar_id": "RADAR_OSFL",
+  "version": "0.1.0",
+  "generated_at": "2026-08-13T19:47:48.132909+00:00",
+  "status": "SOURCE_MODEL_READY",
+  "sources_catalogued": 17,
+  "sii_activity_codes_screened": 9,
+  "historical_focus_from": 2020,
+  "methodological_note": "La pertenencia al universo OSFL no implica riesgo. La priorización AML/CFT debe basarse en señales observables y evidencia trazable."
+}
