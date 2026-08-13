@@ -2,7 +2,7 @@
   "interop_version": "1.0",
   "radar_id": "RADAR_OSFL",
   "repository": "smoralesm07-source/Radar_OSFL",
-  "implementation_stage": "CONTRACT_V1_INSTALLED",
+  "implementation_stage": "ADAPTER_READY_WITH_TERRITORY_PARTIAL",
   "record_domains": ["ENTITY", "ENTITY_YEAR", "ECONOMIC_ACTIVITY", "ADDRESS", "OSFL_REGISTRATION", "PUBLIC_TRANSFER", "DONATION", "GOVERNANCE", "RISK_SIGNAL", "EVIDENCE"],
   "native_grain": ["ENTITY", "ENTITY_X_YEAR", "ENTITY_X_ACTIVITY", "ENTITY_X_SOURCE_EVIDENCE"],
   "entity_hub": {
@@ -12,13 +12,18 @@
     "role_is_identity_independent": true,
     "local_ids_preserved": true,
     "identity_methods": ["RUT_EXACT", "SOURCE_LOCAL_ONLY", "NAME_CANDIDATE_NOT_IDENTITY"],
-    "materialization": "NATIVE_COLUMNS_NO_DUPLICATION"
+    "current_status": "ADAPTER_READY",
+    "adapter_module": "scripts/build_interop.py",
+    "materialized_path": "docs/data/entity_hub_v1.jsonl",
+    "catalog_path": "docs/data/interop_catalog_v1.json"
   },
   "territory": {
     "region_key": "CL-REG-{CODIGO_REGION}",
     "commune_key": "CL-COM-{CODIGO_COMUNA}",
     "name_is_not_key": true,
-    "native_context": "SII address history plus source-specific location"
+    "native_context": "SII address history plus source-specific location",
+    "current_status": "ADAPTER_PARTIAL",
+    "caution": "LATEST_REGION_FREE_TEXT_IS_CONTEXT_ONLY_UNTIL_CANONICAL_CODE_IS_AVAILABLE"
   },
   "sector": {
     "taxonomy": "OSFL legal/form/activity taxonomy",
@@ -28,11 +33,13 @@
     "risk_caution": "OSFL_OR_R8_SCOPE_IS_NOT_AN_ADVERSE_SIGNAL"
   },
   "temporal_evidence": {
-    "time_fields": ["observed_from", "observed_to", "source_published_at", "retrieved_at", "last_seen_at", "last_successful_refresh_at"],
-    "evidence_fields": ["evidence_id", "source_id", "source_url", "ultimate_source_id", "source_tier", "capture_method", "source_run_id", "content_sha256", "quality_status", "schema_version"],
+    "time_fields": ["observed_from", "observed_to", "source_published_at", "retrieved_at", "ingested_at", "last_seen_at", "last_successful_refresh_at"],
+    "evidence_fields": ["evidence_id", "producer_id", "source_id", "source_url", "ultimate_source_id", "source_tier", "capture_method", "source_run_id", "content_sha256", "quality_status", "schema_version"],
     "freshness_states": ["CURRENT", "DUE", "STALE", "UNKNOWN", "FAILED"],
     "source_failure_is_zero": false,
-    "preserve_last_known_good": true
+    "preserve_last_known_good": true,
+    "current_status": "ADAPTER_READY",
+    "materialized_path": "docs/data/evidence_v1.jsonl"
   },
   "scores": {
     "common_risk_score": false,
@@ -42,13 +49,17 @@
     "do_not_score_from_membership_only": true
   },
   "exports": [
+    {"path": "docs/data/entity_hub_v1.jsonl", "purpose": "canonical entity interoperability view"},
+    {"path": "docs/data/evidence_v1.jsonl", "purpose": "canonical evidence lineage view"},
+    {"path": "docs/data/interop_catalog_v1.json", "purpose": "machine-readable interoperability catalog"},
+    {"path": "docs/data/interop_status_v1.json", "purpose": "interop materialization status"},
     {"path": "docs/data/source_catalog.json", "purpose": "machine-readable source catalog"},
-    {"path": "docs/data/summary.json", "purpose": "compact coverage summary"},
-    {"path": "docs/data/osfl_entities.csv", "purpose": "entity-level public candidate universe when materialized"},
+    {"path": "docs/data/osfl_universe_core.csv", "purpose": "governed OSFL core universe"},
     {"path": "GitHub Actions artifacts", "purpose": "heavy snapshots and regenerated data products"}
   ],
   "consumer_contract": {
     "manifest_path": "interop/integration_manifest_v1.json",
-    "schema_path": "interop/interop_contract_v1.schema.json"
+    "schema_path": "interop/interop_contract_v1.schema.json",
+    "canonical_consumer": "smoralesm07-source/Intelligence_Fusion_Layer"
   }
 }
