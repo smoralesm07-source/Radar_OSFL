@@ -1,0 +1,52 @@
+schema_version: '1.0'
+policy:
+  osfl_membership_is_adverse: false
+  fatf_r8_candidate_is_adverse: false
+  missing_source_is_zero: false
+  preserve_last_known_good: true
+  score_name: OSFL_REVIEW_PRIORITY
+  score_scope: ENTITY
+  score_version: '0.1'
+
+dimensions:
+  identity_and_registration:
+    max_points: 20
+    signals:
+      unresolved_rut: 8
+      conflicting_legal_names_across_authoritative_sources: 6
+      legal_status_inconsistency: 6
+  governance:
+    max_points: 20
+    signals:
+      board_or_governance_not_current: 10
+      dissolution_or_expiry_conflict: 10
+  financial_exposure:
+    max_points: 25
+    signals:
+      abrupt_public_transfer_change: 10
+      abrupt_donation_change: 8
+      funding_activity_mismatch: 7
+  cross_source_anomaly:
+    max_points: 25
+    signals:
+      activity_purpose_mismatch: 8
+      material_geographic_change: 5
+      repeated_public_control_findings: 7
+      adverse_authoritative_event: 5
+  cft_context:
+    max_points: 10
+    signals:
+      validated_cross_border_high_risk_exposure: 5
+      validated_cft_authoritative_signal: 5
+
+thresholds:
+  low: [0, 24]
+  medium: [25, 49]
+  high: [50, 74]
+  very_high: [75, 100]
+
+minimum_evidence:
+  scoring_requires_observed_dimensions: 2
+  high_or_more_requires_authoritative_sources: 2
+  do_not_score_when_only_signal_is_osfl_membership: true
+  do_not_score_when_only_signal_is_fatf_r8_screening: true
