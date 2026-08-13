@@ -13,8 +13,8 @@ from radar_osfl.engine import normalize_rut,entity_id,normalize_name,utc_now
 URL='https://donacionesley21440.gob.cl/registro-publico'
 H={'User-Agent':'Radar-OSFL/0.3 public OSINT Chile'}
 RUT_RE=re.compile(r'\b(\d{1,2}(?:\.\d{3}){2}-[0-9Kk]|\d{7,8}-[0-9Kk])\b')
-DETAIL_TIMEOUT=10
-DETAIL_WORKERS=12
+DETAIL_TIMEOUT=3
+DETAIL_WORKERS=20
 
 def fetch_detail(item):
     try:
@@ -28,7 +28,7 @@ def fetch_detail(item):
         item['error']=f'{type(e).__name__}: {e}'; item['rut']=None; item['entity_id']=None; return item
 
 def main():
-    r=requests.get(URL,headers=H,timeout=30); r.raise_for_status(); soup=BeautifulSoup(r.text,'lxml')
+    r=requests.get(URL,headers=H,timeout=20); r.raise_for_status(); soup=BeautifulSoup(r.text,'lxml')
     items=[]; seen=set()
     for a in soup.find_all('a',href=True):
         m=re.search(r'registro-publico\?n=(\d+)',a['href'])
