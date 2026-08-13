@@ -28,7 +28,7 @@ jobs:
           python-version: '3.12'
           cache: pip
       - name: Install
-        run: python -m pip install -r requirements.txt
+        run: python -m pip install -r requirements.txt 'html5lib>=1.1,<2'
       - name: Build source model
         run: python scripts/run_radar.py
       - name: Materialize OSFL universe
