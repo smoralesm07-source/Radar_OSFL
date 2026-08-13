@@ -4,7 +4,7 @@
     "status": "CURRENT",
     "rows": 48291,
     "error": null,
-    "retrieved_at": "2026-08-13T20:15:19.605615+00:00",
+    "retrieved_at": "2026-08-13T20:19:04.732695+00:00",
     "sha256": "27787338253953e16ab17d3f29e697963b96d622e5b06de3f5cd80744dddef36",
     "source_url": "https://www.sii.cl/estadisticas/nominas/PUB_NOM_ACTECOS.zip",
     "failure_is_zero": false
@@ -13,8 +13,8 @@
     "source_id": "sii_osfl_products",
     "status": "FAILED",
     "rows": null,
-    "error": "ImportError: Missing optional dependency 'html5lib'.  Use pip or conda to install html5lib.",
-    "retrieved_at": "2026-08-13T20:15:27.692853+00:00",
+    "error": "ValueError: No tables found",
+    "retrieved_at": "2026-08-13T20:19:12.781190+00:00",
     "sha256": null,
     "source_url": null,
     "failure_is_zero": false
@@ -24,7 +24,7 @@
     "status": "CURRENT",
     "rows": 263,
     "error": null,
-    "retrieved_at": "2026-08-13T20:15:28.350016+00:00",
+    "retrieved_at": "2026-08-13T20:19:13.695549+00:00",
     "sha256": "59e32789feb627a25c7b351c3894b9eceadec65c1ee8b91b3b03e10b1bcf1633",
     "source_url": "https://www.sii.cl/ccp/nomina_sin_fines_lucro.htm",
     "failure_is_zero": false
@@ -34,7 +34,7 @@
     "status": "CURRENT",
     "rows": 45234,
     "error": null,
-    "retrieved_at": "2026-08-13T20:15:44.272543+00:00",
+    "retrieved_at": "2026-08-13T20:19:21.829148+00:00",
     "sha256": "ac7157c4ccd422aeed836e4de18c08f9f26171f3fcc7b17506178f4b1689da34",
     "source_url": "https://www.sii.cl/estadisticas/nominas/PUB_NOMBRES_PJ.zip",
     "failure_is_zero": false
@@ -44,7 +44,7 @@
     "status": "CURRENT",
     "rows": 56482,
     "error": null,
-    "retrieved_at": "2026-08-13T20:16:21.691666+00:00",
+    "retrieved_at": "2026-08-13T20:19:57.457424+00:00",
     "sha256": "2d68ba953db7dbf2aac7451acd6e3e80bea265eea962535c72a5e311c03c4092",
     "source_url": "https://www.sii.cl/estadisticas/nominas/PUB_EMPRESAS_PJ_2020_A_2024.zip",
     "failure_is_zero": false
