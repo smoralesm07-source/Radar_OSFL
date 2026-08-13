@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "radar-osfl-interop-contract-v1",
+  "title": "Contrato de Interoperabilidad de Radares v1 - OSFL",
+  "type": "object",
+  "required": ["interop_version", "radar_id", "repository", "implementation_stage", "entity_hub", "territory", "sector", "temporal_evidence", "scores", "exports"],
+  "properties": {
+    "interop_version": {"const": "1.0"},
+    "radar_id": {"const": "RADAR_OSFL"},
+    "repository": {"type": "string"},
+    "implementation_stage": {"enum": ["CONTRACT_V1_INSTALLED", "ADAPTER_PARTIAL", "INTEROP_READY"]},
+    "entity_hub": {"type": "object"},
+    "territory": {"type": "object"},
+    "sector": {"type": "object"},
+    "temporal_evidence": {"type": "object"},
+    "scores": {"type": "object"},
+    "exports": {"type": "array"}
+  },
+  "additionalProperties": true
+}
