@@ -2,6 +2,10 @@ name: Radar OSFL
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/data/**'
   schedule:
     - cron: '17 10 * * 1'
 
