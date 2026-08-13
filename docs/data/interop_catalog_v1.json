@@ -1,0 +1,22 @@
+{
+  "interop_version": "1.0",
+  "radar_id": "RADAR_OSFL",
+  "entity_hub_materialization": "docs/data/entity_hub_v1.jsonl",
+  "global_entity_key": "ENT-RUT-{RUT_NORMALIZADO}",
+  "unresolved_policy": "ENTITY_ID_NULL_CANDIDATE_ONLY",
+  "exports": [
+    {
+      "path": "docs/data/entity_hub_v1.jsonl",
+      "grain": "SOURCE_ENTITY",
+      "primary_key": "source_entity_id",
+      "canonical_type": "Entity"
+    },
+    {
+      "path": "docs/data/evidence_v1.jsonl",
+      "grain": "SOURCE_EVIDENCE",
+      "primary_key": "evidence_id",
+      "canonical_type": "Evidence"
+    }
+  ],
+  "builder": "scripts/build_interop.py"
+}

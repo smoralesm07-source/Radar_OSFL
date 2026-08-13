@@ -1,0 +1,9 @@
+{
+  "interop_version": "1.0",
+  "radar_id": "RADAR_OSFL",
+  "status": "ADAPTER_READY",
+  "entities": 36832,
+  "evidence_records": 84413,
+  "rejected_invalid_identity": 0,
+  "source_failure_is_zero": false
+}
