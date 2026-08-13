@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Radar OSFL Chile</title>
+<style>
+:root{--bg:#f4f5f7;--panel:#fff;--ink:#1e252c;--muted:#65717c;--line:#dfe3e7;--accent:#d96b2b;--dark:#343a40}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--dark);color:white;padding:22px 30px;border-bottom:4px solid var(--accent)}
+header h1{margin:0;font-size:25px}header p{margin:7px 0 0;color:#d9dde1;font-size:14px}.wrap{max-width:1220px;margin:auto;padding:24px}
+.notice{background:#fff7f0;border:1px solid #f0c8aa;border-left:5px solid var(--accent);padding:14px 16px;border-radius:8px;margin-bottom:18px;font-size:14px;line-height:1.45}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:17px}.label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.value{font-size:27px;font-weight:700;margin-top:7px}.small{font-size:12px;color:var(--muted);margin-top:5px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:19px;margin-bottom:18px}.panel h2{font-size:16px;margin:0 0 12px}.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line);padding:10px 8px}td{border-bottom:1px solid #edf0f2;padding:11px 8px;vertical-align:top}.pill{display:inline-block;border-radius:20px;padding:3px 8px;font-size:11px;background:#eef1f3}.yes{background:#e8f4eb}.candidate{background:#fff1e7}.footer{font-size:12px;color:var(--muted);padding:4px 2px 20px}
+@media(max-width:850px){.cards{grid-template-columns:repeat(2,1fr)}.panel{overflow:auto}}@media(max-width:500px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><h1>Radar OSFL Chile</h1><p>Universo, cobertura de fuentes y preparación analítica AML/CFT · OSINT desde 2020</p></header>
+<main class="wrap">
+<div class="notice"><strong>Criterio de uso:</strong> pertenecer al universo OSFL no constituye una señal adversa. La Recomendación 8 del GAFI se aplica a un subconjunto funcional y cualquier prioridad de revisión debe sustentarse en evidencia adicional, trazable y proporcional.</div>
+<section class="cards">
+<div class="card"><div class="label">Estado</div><div class="value" id="status">—</div><div class="small">estado de construcción</div></div>
+<div class="card"><div class="label">Fuentes</div><div class="value" id="sources">—</div><div class="small">catálogo OSINT</div></div>
+<div class="card"><div class="label">Códigos SII</div><div class="value" id="codes">—</div><div class="small">cribado explícito</div></div>
+<div class="card"><div class="label">Inicio histórico</div><div class="value" id="from">—</div><div class="small">foco analítico</div></div>
+</section>
+<section class="panel"><h2>Arquitectura de universo</h2><div class="legend"><span>1 · Identidad jurídica</span><span>2 · Identidad tributaria</span><span>3 · Financiamiento y donaciones</span><span>4 · Vigencia / gobernanza</span><span>5 · Cruces inter-radar</span></div></section>
+<section class="panel"><h2>Fuentes configuradas</h2><table><thead><tr><th>Fuente</th><th>Autoridad</th><th>Propósito</th><th>Cobertura</th><th>Actualización</th><th>Automatización</th></tr></thead><tbody id="rows"><tr><td colspan="6">Cargando catálogo…</td></tr></tbody></table></section>
+<div class="footer" id="generated"></div>
+</main>
+<script>
+async function load(){
+ const [s,c]=await Promise.all([fetch('data/summary.json').then(r=>r.json()),fetch('data/source_catalog.json').then(r=>r.json())]);
+ document.getElementById('status').textContent=(s.status||'—').replaceAll('_',' ');
+ document.getElementById('sources').textContent=s.sources_catalogued??c.length;
+ document.getElementById('codes').textContent=s.sii_activity_codes_screened??'—';
+ document.getElementById('from').textContent=s.historical_focus_from??'—';
+ document.getElementById('generated').textContent='Última generación: '+(s.generated_at||'sin dato');
+ document.getElementById('rows').innerHTML=c.map(x=>`<tr><td><strong>${x.source_id}</strong></td><td>${x.authority||''}</td><td>${x.purpose||''}</td><td>${x.coverage||''}</td><td>${x.refresh||''}</td><td><span class="pill ${x.automated===true?'yes':x.automated==='candidate_adapter'?'candidate':''}">${x.automated===true?'automática':x.automated||'no'}</span></td></tr>`).join('');
+}
+load().catch(e=>document.getElementById('rows').innerHTML='<tr><td colspan="6">No fue posible cargar los datos compactos.</td></tr>');
+</script>
+</body></html>
