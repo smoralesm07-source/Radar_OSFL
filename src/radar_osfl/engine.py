@@ -17,7 +17,7 @@ import pandas as pd
 import requests
 import yaml
 
-USER_AGENT = "Radar-OSFL/0.1 (+public OSINT; Chile)"
+USER_AGENT = "Radar-OSFL/0.2 (+public OSINT; Chile)"
 
 
 def utc_now() -> str:
@@ -25,8 +25,16 @@ def utc_now() -> str:
 
 
 def clean_text(value: object) -> str:
-    if value is None or pd.isna(value):
+    if value is None:
         return ""
+    if isinstance(value, (tuple, list)):
+        parts = [clean_text(v) for v in value]
+        return " ".join(p for p in parts if p and not p.lower().startswith("unnamed"))
+    try:
+        if pd.isna(value):
+            return ""
+    except (TypeError, ValueError):
+        pass
     return str(value).strip()
 
 
@@ -108,6 +116,10 @@ def canonicalize_columns(df: pd.DataFrame) -> pd.DataFrame:
     names: list[str] = []
     for col in out.columns:
         base = slug(col)
+        # Algunos registros HTML repiten el mismo encabezado en MultiIndex.
+        tokens = base.split("_")
+        if len(tokens) % 2 == 0 and tokens[:len(tokens)//2] == tokens[len(tokens)//2:]:
+            base = "_".join(tokens[:len(tokens)//2])
         count = seen.get(base, 0)
         seen[base] = count + 1
         names.append(base if count == 0 else f"{base}_{count + 1}")
@@ -125,8 +137,8 @@ def find_col(columns: Iterable[str], aliases: Iterable[str]) -> str | None:
 
 def rut_series(df: pd.DataFrame) -> pd.Series:
     df = canonicalize_columns(df)
-    rcol = find_col(df.columns, ["rut", "rut_contribuyente", "rut_empresa", "numero_rut", "rut_numero"])
-    dcol = find_col(df.columns, ["dv", "digito_verificador", "dv_rut"])
+    rcol = find_col(df.columns, ["rut", "r_u_t", "rut_contribuyente", "rut_empresa", "numero_rut", "rut_numero"])
+    dcol = find_col(df.columns, ["dv", "d_v", "digito_verificador", "dv_rut"])
     if rcol and dcol:
         return pd.Series([normalize_rut(r, d) for r, d in zip(df[rcol], df[dcol])], index=df.index)
     if rcol:
@@ -296,7 +308,7 @@ def public_table_candidates(source_id: str, url: str) -> tuple[pd.DataFrame, dic
         if len(x) == 0:
             continue
         rcol = find_col(x.columns, ["rut", "r_u_t"])
-        dvcol = find_col(x.columns, ["dv", "digito_verificador"])
+        dvcol = find_col(x.columns, ["dv", "d_v", "digito_verificador"])
         ncol = find_col(x.columns, ["nombre_o_razon_social", "nombre_razon_social", "nombre", "organizacion"])
         if not rcol and not ncol:
             continue
