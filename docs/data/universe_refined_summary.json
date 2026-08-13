@@ -1,0 +1,67 @@
+{
+  "version": "0.2.1",
+  "status": "CORE_UNIVERSE_REFINED",
+  "raw_universe_entities": 45234,
+  "core_universe_entities": 36832,
+  "review_excluded_entities": 8402,
+  "direct_confirmed_entities": 263,
+  "commercial_form_conflicts": 7629,
+  "by_core_status": {
+    "CORE_STRONG_SII_ACTIVITY": 36345,
+    "CONFIRMED_DIRECT_SII_REGISTRY": 263,
+    "CORE_MEDIUM_ACTIVITY_PLUS_NAME": 224
+  },
+  "review_reasons": {
+    "COMMERCIAL_LEGAL_FORM_WITH_MEDIUM_ACTIVITY": 4352,
+    "COMMERCIAL_LEGAL_FORM_CONFLICTS_WITH_OSFL_SCREEN": 3277,
+    "MEDIUM_ACTIVITY_WITHOUT_OSFL_NAME_EVIDENCE": 773
+  },
+  "by_activity_core": [
+    {
+      "activity_code": "949909",
+      "activity_name": "ACTIVIDADES DE OTRAS ASOCIACIONES N.C.P.",
+      "entities": 25169
+    },
+    {
+      "activity_code": "949903",
+      "activity_name": "FUNDACIONES Y CORPORACIONES; ASOCIACIONES QUE PROMUEVEN ACTIVIDADES CULTURALES O RECREATIVAS",
+      "entities": 6800
+    },
+    {
+      "activity_code": "949901",
+      "activity_name": "ACTIVIDADES DE CENTROS DE MADRES",
+      "entities": 2289
+    },
+    {
+      "activity_code": "942000",
+      "activity_name": "ACTIVIDADES DE SINDICATOS",
+      "entities": 1399
+    },
+    {
+      "activity_code": "949902",
+      "activity_name": "ACTIVIDADES DE CLUBES SOCIALES",
+      "entities": 1377
+    },
+    {
+      "activity_code": "949100",
+      "activity_name": "ACTIVIDADES DE ORGANIZACIONES RELIGIOSAS",
+      "entities": 1339
+    },
+    {
+      "activity_code": "941200",
+      "activity_name": "ACTIVIDADES DE ASOCIACIONES PROFESIONALES",
+      "entities": 358
+    },
+    {
+      "activity_code": "941100",
+      "activity_name": "ACTIVIDADES DE ASOCIACIONES EMPRESARIALES Y DE EMPLEADORES",
+      "entities": 213
+    }
+  ],
+  "methodology": {
+    "direct_registry": "Siempre integra el núcleo cuando el RUT está en una nómina SII que declara explícitamente instituciones sin fines de lucro.",
+    "strong_activity": "Integra el núcleo si la actividad es STRONG/VERY_STRONG y no existe forma societaria comercial explícita en la razón social.",
+    "medium_activity": "941100/941200 requieren además evidencia nominal compatible con asociación/gremio/colegio/cámara u otra forma OSFL y ausencia de forma societaria comercial.",
+    "auditability": "Los descartados se conservan en osfl_universe_review.csv; no se eliminan de la evidencia bruta."
+  }
+}
