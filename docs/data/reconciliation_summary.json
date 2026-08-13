@@ -1,0 +1,12 @@
+{
+  "version": "0.3.0",
+  "status": "MULTI_REGISTRY_RECONCILED",
+  "sii_core_entities": 36832,
+  "expanded_universe_entities": 37161,
+  "new_external_entities": 329,
+  "core_law21440": 724,
+  "core_registro19862": 4853,
+  "catastro_oip": "PENDING_DYNAMIC_ADAPTER",
+  "mdsf19885": "PENDING_NAME_ONLY_ADAPTER",
+  "failure_is_zero": false
+}

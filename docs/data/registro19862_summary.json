@@ -1,0 +1,17 @@
+{
+  "source_id": "registro_19862",
+  "status": "CURRENT",
+  "rows": 31429,
+  "entities": 31429,
+  "type_totals": {
+    "Asociaciones": 25093,
+    "Corporaciones": 13200,
+    "Fundaciones": 6379,
+    "ONG": 2479,
+    "Iglesias": 1696,
+    "Bomberos": 459
+  },
+  "pages": 494,
+  "generated_at": "2026-08-13T21:23:46.914582+00:00",
+  "failure_is_zero": false
+}
