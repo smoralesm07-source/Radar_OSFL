@@ -41,6 +41,8 @@ jobs:
         run: timeout 120s python scripts/v03_reg19862_fast.py || echo 'Registro 19.862 no disponible dentro de ventana operativa; conciliacion continua sin tratar ausencia como cero.'
       - name: Reconcile multi-registry v0.3
         run: python scripts/reconcile_v03.py
+      - name: Build canonical interoperability exports
+        run: python scripts/build_interop.py
       - name: Validate
         run: python -m pytest -q
       - name: Upload analytical entity-year product
