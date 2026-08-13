@@ -35,6 +35,12 @@ jobs:
         run: python scripts/build_universe.py
       - name: Refine OSFL core universe
         run: python scripts/refine_universe.py
+      - name: Extract Law 21440 registry
+        run: python scripts/v03_law21440.py
+      - name: Extract Registro 19862
+        run: python scripts/v03_reg19862.py
+      - name: Reconcile multi-registry v0.3
+        run: python scripts/reconcile_v03.py
       - name: Validate
         run: python -m pytest -q
       - name: Upload analytical entity-year product
