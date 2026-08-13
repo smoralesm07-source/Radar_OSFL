@@ -1,0 +1,54 @@
+{
+  "interop_version": "1.0",
+  "radar_id": "RADAR_OSFL",
+  "repository": "smoralesm07-source/Radar_OSFL",
+  "implementation_stage": "CONTRACT_V1_INSTALLED",
+  "record_domains": ["ENTITY", "ENTITY_YEAR", "ECONOMIC_ACTIVITY", "ADDRESS", "OSFL_REGISTRATION", "PUBLIC_TRANSFER", "DONATION", "GOVERNANCE", "RISK_SIGNAL", "EVIDENCE"],
+  "native_grain": ["ENTITY", "ENTITY_X_YEAR", "ENTITY_X_ACTIVITY", "ENTITY_X_SOURCE_EVIDENCE"],
+  "entity_hub": {
+    "global_key": "ENT-RUT-{RUT_NORMALIZADO}",
+    "valid_rut_required": true,
+    "unresolved_policy": "ENTITY_ID_NULL_CANDIDATE_ONLY",
+    "role_is_identity_independent": true,
+    "local_ids_preserved": true,
+    "identity_methods": ["RUT_EXACT", "SOURCE_LOCAL_ONLY", "NAME_CANDIDATE_NOT_IDENTITY"],
+    "materialization": "NATIVE_COLUMNS_NO_DUPLICATION"
+  },
+  "territory": {
+    "region_key": "CL-REG-{CODIGO_REGION}",
+    "commune_key": "CL-COM-{CODIGO_COMUNA}",
+    "name_is_not_key": true,
+    "native_context": "SII address history plus source-specific location"
+  },
+  "sector": {
+    "taxonomy": "OSFL legal/form/activity taxonomy",
+    "mapping_statuses": ["DIRECT_REGISTRY", "VERY_STRONG", "STRONG", "MEDIUM", "AMBIGUOUS", "EXCLUDE"],
+    "legal_caution": "SII_ACTIVITY_DOES_NOT_PROVE_OSFL_LEGAL_STATUS",
+    "fatf_caution": "OSFL_STATUS_DOES_NOT_PROVE_FATF_R8_SCOPE",
+    "risk_caution": "OSFL_OR_R8_SCOPE_IS_NOT_AN_ADVERSE_SIGNAL"
+  },
+  "temporal_evidence": {
+    "time_fields": ["observed_from", "observed_to", "source_published_at", "retrieved_at", "last_seen_at", "last_successful_refresh_at"],
+    "evidence_fields": ["evidence_id", "source_id", "source_url", "ultimate_source_id", "source_tier", "capture_method", "source_run_id", "content_sha256", "quality_status", "schema_version"],
+    "freshness_states": ["CURRENT", "DUE", "STALE", "UNKNOWN", "FAILED"],
+    "source_failure_is_zero": false,
+    "preserve_last_known_good": true
+  },
+  "scores": {
+    "common_risk_score": false,
+    "policy": "RADAR_SPECIFIC_REVIEW_PRIORITY_ONLY",
+    "required_metadata": ["score_name", "score_value", "score_version", "score_scope", "observed_dimensions", "evidence_count"],
+    "native_scope": ["ENTITY", "ENTITY_X_YEAR"],
+    "do_not_score_from_membership_only": true
+  },
+  "exports": [
+    {"path": "docs/data/source_catalog.json", "purpose": "machine-readable source catalog"},
+    {"path": "docs/data/summary.json", "purpose": "compact coverage summary"},
+    {"path": "docs/data/osfl_entities.csv", "purpose": "entity-level public candidate universe when materialized"},
+    {"path": "GitHub Actions artifacts", "purpose": "heavy snapshots and regenerated data products"}
+  ],
+  "consumer_contract": {
+    "manifest_path": "interop/integration_manifest_v1.json",
+    "schema_path": "interop/interop_contract_v1.schema.json"
+  }
+}
