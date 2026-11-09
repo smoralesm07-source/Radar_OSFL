@@ -1,12 +1,12 @@
 {
   "source_id": "donatarias_21440",
   "status": "CURRENT",
-  "listed": 1410,
-  "valid_rut": 975,
-  "active_valid_rut": 870,
-  "failed_details": 435,
+  "listed": 1441,
+  "valid_rut": 1156,
+  "active_valid_rut": 1032,
+  "failed_details": 285,
   "detail_timeout_seconds": 3,
   "detail_workers": 20,
-  "generated_at": "2026-10-26T16:51:07.126234+00:00",
+  "generated_at": "2026-11-09T20:49:16.029168+00:00",
   "failure_is_zero": false
 }
